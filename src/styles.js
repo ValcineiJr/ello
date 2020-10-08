@@ -5,6 +5,7 @@ const buttonColor = "#4BBDD8";
 export const Container = styled.div`
   min-height: 100vh;
   display: flex;
+  padding-bottom: 60px;
   flex-direction: column;
 `;
 export const Header = styled.div`
@@ -48,9 +49,8 @@ export const Menu = styled.div`
   }
 
   .logo {
-    background: green;
-    width: 170px;
-    height: 60px;
+    width: 120px;
+    height: 50px;
   }
   .logo img {
     width: 100%;
@@ -216,11 +216,21 @@ export const AllotmentArea = styled.div`
   text-align: center;
   align-items: center;
 
-  padding-bottom: 150px;
-
   @media (max-width: 1000px) {
     padding: 20px;
-    padding-bottom: 150px;
+    /* padding-bottom: 150px; */
+  }
+
+  .see-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 600;
+    width: 100%;
+    height: 20px;
+    background: ${headerBgColor};
   }
 
   .title {
@@ -239,7 +249,7 @@ export const AllotmentArea = styled.div`
   }
   .video {
     height: 500px;
-    width: 100%;
+    width: 80%;
     max-width: 1200px;
     margin: 0 auto;
     background: blue;
@@ -248,4 +258,192 @@ export const AllotmentArea = styled.div`
     align-items: center;
     font-size: 40px;
   }
+
+  .progress-bar {
+    display: flex;
+    width: 100%;
+    min-height: 450px;
+    margin-top: 100px;
+    background: #fff;
+  }
+
+  @media (max-width: 1000px) {
+    .progress-bar {
+      flex-direction: column;
+    }
+
+    .bars {
+      order: 1;
+      /* height: 300px; */
+    }
+  }
+
+  .bar-box {
+    display: flex;
+    height: 30px;
+    /* background: Red; */
+    flex-direction: column;
+    text-align: left;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 30px;
+    /* background: red; */
+  }
+
+  .bar-case {
+    background: #ddd;
+    margin-top: 10px;
+  }
+
+  .bars {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 80px;
+  }
+
+  .bars span {
+    margin-bottom: 80px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #1b1b1b;
+  }
+
+  .image {
+    flex: 1;
+  }
+
+  .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const Bar = styled.div`
+  height: 4px;
+  width: ${(props) => props.Barsize}%;
+  background: #49bbd6;
+`;
+
+export const IconsArea = styled.div`
+  height: 200px;
+  width: 100%;
+  background: ${headerBgColor};
+  display: flex;
+  align-items: center;
+  color: #fff;
+  justify-content: space-evenly;
+
+  @media (max-width: 1000px) {
+    height: 400px;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+`;
+export const Icon = styled.div`
+  display: flex;
+  /* background: Red; */
+  width: 120px;
+  height: 100px;
+  align-items: center;
+
+  .number {
+    font-size: 14px;
+  }
+
+  i {
+    font-size: 25px;
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    align-items: flex-start;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+  }
+`;
+export const Images = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+
+  @media (max-width: 1000px) {
+    ul {
+      flex-direction: column;
+    }
+    li {
+      width: 100% !important;
+    }
+  }
+
+  li {
+    width: 25%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+export const Depositions = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: ${buttonColor};
+  width: 100%;
+  height: 210px;
+  overflow-x: hidden;
+
+  .deposition {
+    width: 100vw;
+    height: 210px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    flex-direction: column;
+  }
+
+  @media (max-width: 1000px) {
+    .deposition {
+      padding: 0 30px;
+    }
+  }
+
+  p {
+    max-width: 500px;
+    font-weight: 600;
+  }
+
+  span {
+    text-transform: uppercase;
+    margin-top: 15px;
+    font-size: 12px;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+  }
+`;
+export const Indicator = styled.li`
+  background: #fff;
+  width: ${(props) => props.size}px;
+  height: ${(props) => props.size}px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.6s;
 `;
