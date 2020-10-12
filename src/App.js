@@ -340,7 +340,69 @@ function App() {
           </div>
           <input type="submit" value="ENVIAR MENSAGEM" />
         </Form>
-        <Footer></Footer>
+        <Footer>
+          <div className="direitos">
+            <p className="title">ELLO Empreendimentos</p>
+            <div>
+              <p className="copy">
+                &copy; 2020 Todos Os Direitos Reservados Desenvolvido por
+                IMPACTO
+              </p>
+            </div>
+          </div>
+          <div className="email">
+            <p>EMAIL@EMAIL.COM</p>
+            <p>+00 0 0000-0000</p>
+          </div>
+          <div className="news">
+            <ul>
+              <li>
+                <a href="#">Projects</a>
+              </li>
+              <li>
+                <a href="#">About</a>
+              </li>
+              <li>
+                <a href="#">Services</a>
+              </li>
+              <li>
+                <a href="#">Carreer</a>
+              </li>
+            </ul>
+            <div>
+              <ul>
+                <li>
+                  <a href="#">News</a>
+                </li>
+                <li>
+                  <a href="#">Events</a>
+                </li>
+                <li>
+                  <a href="#">Contact</a>
+                </li>
+                <li>
+                  <a href="#">Legals</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="social">
+            <ul>
+              <li>
+                <a href="#">Facebook</a>
+              </li>
+              <li>
+                <a href="#">Twitter</a>
+              </li>
+              <li>
+                <a href="#">Instagram</a>
+              </li>
+              <li>
+                <a href="#">Dribble</a>
+              </li>
+            </ul>
+          </div>
+        </Footer>
       </Container>
     </div>
   );

@@ -5,7 +5,6 @@ const buttonColor = "#4BBDD8";
 export const Container = styled.div`
   min-height: 100vh;
   display: flex;
-  padding-bottom: 60px;
   flex-direction: column;
 `;
 export const Header = styled.div`
@@ -451,9 +450,10 @@ export const Form = styled.form`
   display: flex;
   background: #f4f4f4;
   width: 100%;
-  height: 500px;
+  height: 550px;
   /* background: Red; */
   padding-top: 80px;
+  padding-bottom: 50px;
   flex-direction: column;
 
   .header {
@@ -521,4 +521,45 @@ export const Form = styled.form`
 
 export const Footer = styled.div`
   display: flex;
+  width: 100%;
+  height: 200px;
+  margin-top: auto;
+  background: ${headerBgColor};
+
+  p.title {
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .direitos,
+  .news,
+  .email,
+  .social {
+    flex: 1;
+    /* background: green; */
+    color: #aeaeae;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .direitos {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 50px;
+  }
+  .email {
+    flex-direction: column;
+  }
+  .news {
+    justify-content: space-around;
+  }
+  a {
+    color: #aeaeae;
+    font-size: 14px;
+  }
 `;
