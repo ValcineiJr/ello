@@ -522,9 +522,29 @@ export const Form = styled.form`
 export const Footer = styled.div`
   display: flex;
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   margin-top: auto;
   background: ${headerBgColor};
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    .direitos,
+    .news,
+    .email,
+    .social {
+      min-height: 120px;
+      text-align: center !important;
+    }
+
+    .direitos {
+      padding-left: 0 !important;
+    }
+
+    p.title {
+      display: block;
+      width: 100%;
+    }
+  }
 
   p.title {
     font-size: 16px;
