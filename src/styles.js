@@ -399,7 +399,7 @@ export const Icon = styled.div`
 `;
 export const Images = styled.div`
   display: flex;
-  width: 100%;
+  /* width: 100%; */
   flex-wrap: wrap;
 
   ul {
