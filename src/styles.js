@@ -447,3 +447,78 @@ export const Indicator = styled.li`
   cursor: pointer;
   transition: all 0.6s;
 `;
+export const Form = styled.form`
+  display: flex;
+  background: #f4f4f4;
+  width: 100%;
+  height: 500px;
+  /* background: Red; */
+  padding-top: 80px;
+  flex-direction: column;
+
+  .header {
+    /* background: yellow; */
+    width: 100%;
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+  }
+
+  .header h1 {
+    margin-bottom: 20px;
+  }
+  .header p {
+    color: #aeaeae;
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .form {
+    display: grid;
+    /* background: green; */
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    max-width: 800px;
+    grid:
+      "name email" 50px
+      "subject subject" 50px
+      "message message" 1fr;
+    gap: 20px;
+  }
+
+  .name {
+    grid-area: name;
+  }
+  .subject {
+    grid-area: subject;
+  }
+  .message {
+    grid-area: message;
+  }
+  .email {
+    grid-area: email;
+  }
+
+  input,
+  textarea {
+    padding-left: 16px;
+    border: 0;
+  }
+  textarea {
+    padding-top: 8px;
+  }
+  input[type="submit"] {
+    height: 80px;
+    margin: 20px auto;
+    width: 200px;
+    background: ${headerBgColor};
+    border: 0;
+    color: #fff;
+  }
+`;
+
+export const Footer = styled.div`
+  display: flex;
+`;

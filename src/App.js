@@ -17,14 +17,16 @@ import {
   Images,
   Depositions,
   Indicator,
+  Form,
+  Footer,
 } from "./styles";
 import ProgressBarImage from "./assets/progress-bar-image.jpg";
 import foto1 from "./assets/apresentation/foto1.jpg";
 import foto2 from "./assets/apresentation/foto2.jpg";
-import foto3 from "./assets/apresentation/foto3.jpg";
 import foto4 from "./assets/apresentation/foto4.jpg";
 import foto5 from "./assets/apresentation/foto5.jpg";
 import foto6 from "./assets/apresentation/foto6.jpg";
+import foto3 from "./assets/apresentation/foto3.jpg";
 import foto7 from "./assets/apresentation/foto7.jpg";
 import foto8 from "./assets/apresentation/foto8.jpg";
 
@@ -317,6 +319,28 @@ function App() {
             <Indicator size={position === 3 ? 10 : 5}></Indicator>
           </ul>
         </div>
+        <Form>
+          <div className="header">
+            <h1>Fale conosco</h1>
+            <p>Let us know what you're looking for in an agency. </p>
+            <p>
+              We'll take a look and see if this could be the start of something
+              beautiful.
+            </p>
+          </div>
+          <div className="form">
+            <input type="text" placeholder="Seu Nome" className="name" />
+            <input type="email" placeholder="Seu Email" className="email" />
+            <input type="text" placeholder="Assunto" className="subject" />
+            <textarea
+              name="message"
+              className="message"
+              placeholder="Mensagem"
+            ></textarea>
+          </div>
+          <input type="submit" value="ENVIAR MENSAGEM" />
+        </Form>
+        <Footer></Footer>
       </Container>
     </div>
   );
