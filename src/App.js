@@ -140,47 +140,42 @@ function App() {
     e.preventDefault();
   };
 
-  const depositionScroll = () => {
-    const width = window.innerWidth;
-
-    depoRef.current.scrollBy({
-      top: 0,
-      left: width,
-      behavior: "smooth",
-    });
-
-    if (depoRef.current.scrollLeft === 0) {
-      setPosition(1);
-    } else if (depoRef.current.scrollLeft === width) {
-      setPosition(2);
-    } else {
-      setPosition(3);
-    }
+  const SmoothScroll = (area) => {
+    const section = document.querySelector(`.${area}`);
+    section.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="App">
       <Container>
+        <a onClick={() => SmoothScroll("menu")} className="up-button">
+          <i class="fas fa-arrow-up"></i>
+        </a>
         <Header>
-          <Menu>
+          <Menu className="menu">
             <div className="logo">
               <img src={require("./assets/logo.png")} alt="" />
             </div>
             <div className="menu">
               <ul>
-                <MenuItem>home</MenuItem>
-                <MenuItem>sobre</MenuItem>
-                <MenuItem>empreendimentos</MenuItem>
-                <MenuItem>pedro mateus</MenuItem>
-                <MenuItem>depoimentos</MenuItem>
-                <MenuItem>contato</MenuItem>
+                <MenuItem onClick={() => SmoothScroll("home")}>home</MenuItem>
+                <MenuItem onClick={() => SmoothScroll("about")}>sobre</MenuItem>
+                <MenuItem onClick={() => SmoothScroll("empreendimento")}>
+                  empreendimentos
+                </MenuItem>
+                <MenuItem onClick={() => SmoothScroll("depoimentos")}>
+                  depoimentos
+                </MenuItem>
+                <MenuItem onClick={() => SmoothScroll("contact")}>
+                  contato
+                </MenuItem>
               </ul>
             </div>
             <a href="#" className="menu-icon" onClick={toggleMenu}>
               <i class="fas fa-bars "></i>
             </a>
           </Menu>
-          <Info>
+          <Info className="home">
             <div className="image">
               <img src="https://picsum.photos/id/1029/500/500" alt="" />
             </div>
@@ -196,7 +191,7 @@ function App() {
             </div>
           </Info>
         </Header>
-        <About>
+        <About className="about">
           <p className="title">Sobre nós</p>
           <p className="info">
             Divide have don't man wherein air fourth. Own itself make have night
@@ -208,7 +203,7 @@ function App() {
           </p>
           <p className="info">heaven fruit, dominion she'd won't very all.</p>
         </About>
-        <SelectAllotment>
+        <SelectAllotment className="empreendimento">
           <span>Selecione um loteamento!</span>
         </SelectAllotment>
         <AllotmentList ref={listRef}>
@@ -295,7 +290,7 @@ function App() {
             </ul>
           </Images>
         </AllotmentArea>
-        <Depositions ref={depoRef}>
+        <Depositions className="depoimentos" ref={depoRef}>
           <ul>
             {depositions.map((deposition, i) => (
               <li>
@@ -319,7 +314,7 @@ function App() {
             <Indicator size={position === 3 ? 10 : 5}></Indicator>
           </ul>
         </div>
-        <Form>
+        <Form className="contact">
           <div className="header">
             <h1>Fale conosco</h1>
             <p>Let us know what you're looking for in an agency. </p>

@@ -6,6 +6,22 @@ export const Container = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+
+  .up-button {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    border-radius: 25px;
+    color: #fff;
+    background: ${headerBgColor};
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 20px;
+    cursor: pointer;
+    border: 1px solid #fff;
+    right: 20px;
+  }
 `;
 export const Header = styled.div`
   display: flex;
@@ -69,6 +85,7 @@ export const MenuItem = styled.li`
   color: #fff;
   font-size: 12px;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export const Info = styled.div`
@@ -218,6 +235,10 @@ export const AllotmentArea = styled.div`
   @media (max-width: 1000px) {
     padding: 20px;
     /* padding-bottom: 150px; */
+
+    .video {
+      height: 300px !important;
+    }
   }
 
   .see-more {
