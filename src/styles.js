@@ -22,6 +22,15 @@ export const Container = styled.div`
     border: 1px solid #fff;
     right: 20px;
   }
+  .mobile-menu {
+    display: none;
+    width: 100%;
+    background: #fff;
+    color: ${headerBgColor} !important;
+  }
+  .mobile-menu li {
+    color: ${headerBgColor} !important;
+  }
 `;
 export const Header = styled.div`
   display: flex;

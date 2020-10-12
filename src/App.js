@@ -32,6 +32,7 @@ import foto8 from "./assets/apresentation/foto8.jpg";
 
 function App() {
   const [position, setPosition] = useState(2);
+  const [menuVisible, setMenuVisible] = useState("none");
 
   useEffect(() => {
     autoDepoScroll();
@@ -138,11 +139,25 @@ function App() {
 
   const toggleMenu = (e) => {
     e.preventDefault();
+
+    if (menuVisible === "none") {
+      setMenuVisible("block");
+    } else {
+      setMenuVisible("none");
+    }
   };
 
   const SmoothScroll = (area) => {
     const section = document.querySelector(`.${area}`);
     section.scrollIntoView({ behavior: "smooth" });
+
+    if (area !== "menu") {
+      if (menuVisible === "none") {
+        setMenuVisible("block");
+      } else {
+        setMenuVisible("none");
+      }
+    }
   };
 
   return (
@@ -175,6 +190,21 @@ function App() {
               <i class="fas fa-bars "></i>
             </a>
           </Menu>
+          <div style={{ display: menuVisible }} className="mobile-menu">
+            <ul>
+              <MenuItem onClick={() => SmoothScroll("home")}>home</MenuItem>
+              <MenuItem onClick={() => SmoothScroll("about")}>sobre</MenuItem>
+              <MenuItem onClick={() => SmoothScroll("empreendimento")}>
+                empreendimentos
+              </MenuItem>
+              <MenuItem onClick={() => SmoothScroll("depoimentos")}>
+                depoimentos
+              </MenuItem>
+              <MenuItem onClick={() => SmoothScroll("contact")}>
+                contato
+              </MenuItem>
+            </ul>
+          </div>
           <Info className="home">
             <div className="image">
               <img src="https://picsum.photos/id/1029/500/500" alt="" />
