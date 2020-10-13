@@ -160,12 +160,33 @@ function App() {
     }
   };
 
+  const closeModal = () => {
+    var modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  };
+
+  const openModal = (src) => {
+    var modal = document.getElementById("myModal");
+    var modalImg = document.getElementById("img01");
+    modal.style.display = "flex";
+    modalImg.src = src;
+  };
+
   return (
     <div className="App">
       <Container>
         <a onClick={() => SmoothScroll("menu")} className="up-button">
           <i class="fas fa-arrow-up"></i>
         </a>
+
+        <div id="myModal" class="modal">
+          <span onClick={closeModal} class="close">
+            &times;
+          </span>
+          <img class="modal-content" id="img01" />
+          <div id="caption"></div>
+        </div>
+
         <Header>
           <Menu className="menu">
             <div className="logo">
@@ -314,7 +335,7 @@ function App() {
             <ul>
               {images.map((img) => (
                 <li>
-                  <img src={img} alt="" />
+                  <img onClick={() => openModal(img)} src={img} alt="" />
                 </li>
               ))}
             </ul>
