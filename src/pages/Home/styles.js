@@ -547,6 +547,7 @@ export const Form = styled.form`
     background: ${headerBgColor};
     border: 0;
     color: #fff;
+    cursor: pointer;
   }
 `;
 
