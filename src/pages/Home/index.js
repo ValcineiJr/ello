@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "../../styles.css";
+import api from "../../services/api";
+import URL from "../../services/config";
 import {
   Container,
   Header,
@@ -21,14 +23,6 @@ import {
   Footer,
 } from "./styles";
 import ProgressBarImage from "../../assets/progress-bar-image.jpg";
-import foto1 from "../../assets/apresentation/foto1.jpg";
-import foto2 from "../../assets/apresentation/foto2.jpg";
-import foto4 from "../../assets/apresentation/foto4.jpg";
-import foto5 from "../../assets/apresentation/foto5.jpg";
-import foto6 from "../../assets/apresentation/foto6.jpg";
-import foto3 from "../../assets/apresentation/foto3.jpg";
-import foto7 from "../../assets/apresentation/foto7.jpg";
-import foto8 from "../../assets/apresentation/foto8.jpg";
 
 function Home() {
   const [position, setPosition] = useState(2);
@@ -37,6 +31,28 @@ function Home() {
   useEffect(() => {
     autoDepoScroll();
   }, [position]);
+
+  useEffect(() => {
+    listRef.current.style.cursor = "grab";
+    // Attach the handler
+    listRef.current.addEventListener("mousedown", mouseDownHandler);
+
+    loadAllotments();
+  }, []);
+
+  const loadAllotments = async () => {
+    const response = await api.get("allotments");
+    const dados = response.data;
+    setAllotments(dados);
+    setAllotmentName(dados[0].name);
+    setAllotmentDescription(dados[0].description);
+    setAllotmentImages(dados[0].gallery);
+    setAllotmentinfrastructure(dados[0].infrastructure);
+    setAllotmentApproval(dados[0].approval);
+    setAllotmentDocumentation(dados[0].documentation);
+    setAllotmentLots(dados[0].lots);
+    setAllotmentVideoUrl(dados[0].video_url);
+  };
 
   const autoDepoScroll = () => {
     const width = window.innerWidth;
@@ -65,36 +81,18 @@ function Home() {
   const listRef = useRef(null);
   const depoRef = useRef(null);
 
-  const images = [foto1, foto2, foto3, foto4, foto5, foto6, foto7, foto8];
   const depositions = [1, 2, 3];
 
-  const [allotments] = useState([
-    {
-      name: "Pedro Mateus",
-      description:
-        "Was years it seasons was there from the in them together over that, third sixth gathered female creeping bearing behold years.",
-      url: "",
-      image: "lote.png",
-    },
+  const [allotments, setAllotments] = useState([]);
 
-    {
-      name: "Pedro Lucas",
-      description: "Um lote muito bacana",
-      url: "",
-      image: "lote3.png",
-    },
-  ]);
-
-  const [allotmentDescription, setAllotmentDescription] = useState(
-    "Was years it seasons was there from the in them together over that, third sixth gathered female creeping bearing behold years."
-  );
-  const [allotmentName, setAllotmentName] = useState("Pedro Mateus");
-
-  useEffect(() => {
-    listRef.current.style.cursor = "grab";
-    // Attach the handler
-    listRef.current.addEventListener("mousedown", mouseDownHandler);
-  }, []);
+  const [allotmentDescription, setAllotmentDescription] = useState("");
+  const [allotmentName, setAllotmentName] = useState("");
+  const [allotmentImages, setAllotmentImages] = useState([]);
+  const [allotmentApproval, setAllotmentApproval] = useState(0);
+  const [allotmentDocumentation, setAllotmentDocumentation] = useState(0);
+  const [allotmentinfrastructure, setAllotmentinfrastructure] = useState(0);
+  const [allotmentLot, setAllotmentLots] = useState(0);
+  const [allotmentVideoUrl, setAllotmentVideoUrl] = useState(476584207);
 
   let pos = { top: 0, left: 0, x: 0, y: 0 };
 
@@ -132,9 +130,24 @@ function Home() {
     document.removeEventListener("mouseup", mouseUpHandler);
   };
 
-  const selectAllotment = (name, description) => {
+  const selectAllotment = (
+    name,
+    description,
+    images,
+    documentation,
+    approval,
+    lots,
+    infrastructure,
+    videoUrl
+  ) => {
     setAllotmentName(name);
     setAllotmentDescription(description);
+    setAllotmentImages(images);
+    setAllotmentDocumentation(documentation);
+    setAllotmentApproval(approval);
+    setAllotmentLots(lots);
+    setAllotmentinfrastructure(infrastructure);
+    setAllotmentVideoUrl(videoUrl);
   };
 
   const toggleMenu = (e) => {
@@ -172,7 +185,7 @@ function Home() {
     var modal = document.getElementById("myModal");
     var modalImg = document.getElementById("img01");
     modal.style.display = "flex";
-    modalImg.src = src;
+    modalImg.src = `${URL}/files/${allotmentName}/${src}`;
   };
 
   return (
@@ -263,10 +276,22 @@ function Home() {
             <Allotment
               key={allotment.name}
               onClick={() =>
-                selectAllotment(allotment.name, allotment.description)
+                selectAllotment(
+                  allotment.name,
+                  allotment.description,
+                  allotment.gallery,
+                  allotment.documentation,
+                  allotment.approval,
+                  allotment.lots,
+                  allotment.infrastructure,
+                  allotment.video_url
+                )
               }
             >
-              <img src={require(`../../assets/${allotment.image}`)} alt="" />
+              <img
+                src={`${URL}/files/${allotment.name}/${allotment.logo}`}
+                alt=""
+              />
             </Allotment>
           ))}
         </ul>
@@ -274,26 +299,37 @@ function Home() {
       <AllotmentArea>
         <p className="title">Loteamento {allotmentName}</p>
         <p className="description">{allotmentDescription}</p>
-        <div className="video">{allotmentName}</div>
+        <div className="video">
+          <iframe
+            src={`https://player.vimeo.com/video/${allotmentVideoUrl}?title=0&byline=0&portrait=0`}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+            frameborder="0"
+            allow="autoplay; fullscreen"
+            allowfullscreen
+          ></iframe>
+        </div>
         <div className="progress-bar">
           <div className="bars">
             <span>Loteamento {allotmentName}</span>
             <div className="bar-box">
               documentação
               <div className="bar-case">
-                <Bar Barsize={70} />
+                <Bar Barsize={allotmentDocumentation} />
               </div>
             </div>
             <div className="bar-box">
               aprovação
               <div className="bar-case">
-                <Bar Barsize={90} />
+                <Bar Barsize={allotmentApproval} />
               </div>
             </div>
             <div className="bar-box">
               infraestrutura
               <div className="bar-case">
-                <Bar Barsize={60} />
+                <Bar Barsize={allotmentinfrastructure} />
               </div>
             </div>
           </div>
@@ -305,37 +341,41 @@ function Home() {
           <Icon>
             <i class="fas fa-hotel"></i>
             <div className="info">
-              <p className="number">100</p>
+              <p className="number">{allotmentLot}</p>
               <p>lotes</p>
             </div>
           </Icon>
           <Icon>
             <i class="far fa-file-alt"></i>
             <div className="info">
-              <p className="number">70%</p>
+              <p className="number">{allotmentDocumentation}%</p>
               <p>documentação</p>
             </div>
           </Icon>
           <Icon>
             <i class="far fa-thumbs-up"></i>
             <div className="info">
-              <p className="number">90%</p>
+              <p className="number">{allotmentApproval}%</p>
               <p>aprovação</p>
             </div>
           </Icon>
           <Icon>
             <i class="fas fa-university"></i>
             <div className="info">
-              <p className="number">60%</p>
+              <p className="number">{allotmentinfrastructure}%</p>
               <p>infraestrutura</p>
             </div>
           </Icon>
         </IconsArea>
         <Images>
           <ul>
-            {images.map((img) => (
+            {allotmentImages.map((img) => (
               <li>
-                <img onClick={() => openModal(img)} src={img} alt="" />
+                <img
+                  onClick={() => openModal(img)}
+                  src={`${URL}/files/${allotmentName}/${img}`}
+                  alt=""
+                />
               </li>
             ))}
           </ul>
